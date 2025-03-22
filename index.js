@@ -11,19 +11,29 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
+
 app.use((req, res, next) => {
     // Check Accept header
     const acceptHeader = req.headers.accept;
 
     console.log(`Client accepteert: ${acceptHeader}`);
 
-    if (acceptHeader === 'application/json') {
-        console.log('app started')
-        next()
-    } else {
+    if (req.header('Accept') !== 'application/json' && req.method !== 'OPTIONS') {
+
         res.status(400).send('Illegal format');
-    }
+
+    } else {
+        console.log('app started')
+        next()    }
 })
+
+// app.use((req, res, next) => {
+//     if (req.header('Accept') !== 'application/json' && req.method !== 'OPTIONS') {
+//         res.status(406).json({ error: 'Only JSON is allowed as Accept header' });
+//     } else {
+//         next();
+//     }
+// });
 
 
 app.get('/', (req, res) => {

@@ -98,13 +98,25 @@ router.put('/:id', async (req, res) => {
 
 
 router.get('/:id', async (req, res) => {
-    const {id} = req.params;
 
-    if (!mongoose.isValidObjectId(id)) {
-        return res.status(404).json({error: 'No setup found with this ID'});
-    } else{
-        const setup = await Setup.findById(id);
-        res.status(200).json(setup)
+    try {
+        const {id} = req.params;
+
+        if (!mongoose.isValidObjectId(id)) {
+            return res.status(404).json({ error: 'No setup found with this ID' });
+        }
+
+        const setup = await Setup.findById({_id: req.params.id});
+
+        if (setup) {
+            res.status(200).json(setup);
+        } else {
+            res.status(404).json({error: 'No setup found with this id'});
+        }
+
+    } catch(error) {
+        console.log(error);
+        res.status(400).json({error: error.message});
     }
 });
 

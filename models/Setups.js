@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const setupSchema = new mongoose.Schema({
-        title: String,
-        author: String,
-        body: String,
+        title: { type: String, required: true },
+        author: { type: String, required: true },
+        body: { type: String, required: true },
         category: String,
         image: String
 
@@ -14,10 +14,10 @@ const setupSchema = new mongoose.Schema({
             transform: (doc, ret) => {
                 ret._links = {
                     self: {
-                        href: process.env.BASE_URL + `/setups/${ret._id}`
+                        href: process.env.BASE_URL + `setups/${ret._id}`
                     },
                     collection: {
-                        href: process.env.BASE_URL + '/setups'
+                        href: process.env.BASE_URL + 'setups'
                     }
 
                 }
