@@ -14,10 +14,10 @@ const setupSchema = new mongoose.Schema({
             transform: (doc, ret) => {
                 ret._links = {
                     self: {
-                        href: process.env.BASE_URL + 'setups'
+                        href: process.env.BASE_URL + `/setups/${ret._id}`
                     },
                     collection: {
-                        // href: process.env.BASE_URL+'setups'
+                        href: process.env.BASE_URL + '/setups'
                     }
 
                 }
