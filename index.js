@@ -41,10 +41,8 @@ app.get('/', (req, res) => {
 });
 
 
-// Middleware voor JSON-gegevens
 app.use(express.json());
 
-// Middleware voor www-urlencoded-gegevens
 app.use(express.urlencoded({extended: true}));
 
 app.use('/setups', setups)
