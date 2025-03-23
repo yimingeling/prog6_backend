@@ -36,10 +36,10 @@ router.get('/', async (req, res) => {
             "items": setups,
             "_links": {
                 "self": {
-                    "href": process.env["BASE_URL"] + "/setups"
+                    "href": process.env["BASE_URL"] + "setups"
                 },
                 "collection": {
-                    "href": process.env["BASE_URL"] + "/setups"
+                    "href": process.env["BASE_URL"] + "setups"
                 }
             }
         }
@@ -106,7 +106,7 @@ router.get('/:id', async (req, res) => {
             return res.status(404).json({ error: 'No setup found with this ID' });
         }
 
-        const setup = await Setup.findById({_id: req.params.id});
+        const setup = await Setup.findById(id);
 
         if (setup) {
             res.status(200).json(setup);
