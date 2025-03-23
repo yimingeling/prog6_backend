@@ -27,7 +27,6 @@ router.options('/:id', (req, res) => {
 
 router.get('/', async (req, res) => {
 
-    // Check Accept header
 
     try {
         const setups = await Setup.find({});

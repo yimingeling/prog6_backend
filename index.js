@@ -13,7 +13,6 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-    // Check Accept header
     const acceptHeader = req.headers.accept;
 
     console.log(`Client accepteert: ${acceptHeader}`);
